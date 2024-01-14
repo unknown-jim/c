@@ -47,14 +47,14 @@ int main(const int argc, const char **argv)
             memset(buffer, 0, sizeof(buffer));
             read(cfd, buffer, sizeof(buffer));
             printf("\nclient: %s", buffer);
-            if (strncmp(buffer, "quiting", 7) == 0)
+            if (strncmp(buffer, "quiting", 8) == 0)
             {
-                printf("conversation over\n");
+                printf("\nconversation over\n");
                 memset(buffer, 0, sizeof(buffer));
                 break;
             }
 
-            printf("\nserver:");
+            printf("\nserver: ");
             memset(buffer, 0, sizeof(buffer));
             scanf("%s", buffer);
             write(cfd, buffer, strlen(buffer));
@@ -62,11 +62,11 @@ int main(const int argc, const char **argv)
 
         close(cfd);
 
-        printf("continue?[y/n]\n");
+        printf("\ncontinue?[y/n]\ninput: ");
         scanf("%s", buffer);
         while (strlen(buffer) != 1 || (buffer[0] != 'y' && buffer[0] != 'n'))
         {
-            printf("input 'y' or 'n'\n");
+            printf("input 'y' or 'n'\ninput: ");
             memset(buffer, 0, sizeof(buffer));
             scanf("%s", buffer);
         }
