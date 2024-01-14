@@ -8,10 +8,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-int main(const int argc, const char** argv)
+int main(const int argc, const char **argv)
 {
     int lfd = socket(AF_INET, SOCK_STREAM, 0);
-    if(lfd < 0)
+    if (lfd < 0)
     {
         perror("socket:");
         return -1;
@@ -35,14 +35,14 @@ int main(const int argc, const char** argv)
         return -1;
     }
 
-    while(1)
+    while (1)
     {
         printf("waiting connection\n");
         int cfd = accept(lfd, NULL, NULL);
 
         char buffer[1024];
 
-        while(1)
+        while (1)
         {
             memset(buffer, 0, sizeof(buffer));
             read(cfd, buffer, sizeof(buffer));
@@ -50,6 +50,7 @@ int main(const int argc, const char** argv)
             if (strncmp(buffer, "quiting", 7) == 0)
             {
                 printf("conversation over\n");
+                memset(buffer, 0, sizeof(buffer));
                 break;
             }
 
@@ -60,6 +61,18 @@ int main(const int argc, const char** argv)
         }
 
         close(cfd);
+
+        printf("continue?[y/n]\n");
+        scanf("%s", buffer);
+        while (strlen(buffer) != 1 || (buffer[0] != 'y' && buffer[0] != 'n'))
+        {
+            printf("input 'y' or 'n'\n");
+            memset(buffer, 0, sizeof(buffer));
+            scanf("%s", buffer);
+        }
+
+        if (buffer[0] == 'n')
+            break;
     }
     close(lfd);
 
