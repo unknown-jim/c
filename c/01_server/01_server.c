@@ -8,7 +8,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-int main(const int argc, const char **argv)
+int main(const int argc, const char** argv)
 {
     int lfd = socket(AF_INET, SOCK_STREAM, 0);
     if (lfd < 0)
