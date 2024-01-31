@@ -26,6 +26,7 @@ int main(const int argc, const char **argv)
     char buf[1024];
     socklen_t clit_len;
 
+    printf("server initiated\n");
     while (1)
     {
         memset(buf, 0, strlen(buf));
@@ -39,6 +40,8 @@ int main(const int argc, const char **argv)
 
         sendto(cfd, buf, strlen(buf), 0, (struct sockaddr *)&clit, clit_len);
     }
+
+    Close(cfd);
 
     return 0;
 }

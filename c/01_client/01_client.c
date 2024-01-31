@@ -20,22 +20,23 @@ int main(const int argc, const char **argv)
         return -1;
     }
 
+    int cfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (cfd < 0)
+    {
+        perror("socket:");
+        return -1;
+    }
+
+    char buffer[1024] = {0};
+
     while (1)
     {
-        int cfd = socket(AF_INET, SOCK_STREAM, 0);
-        if (cfd < 0)
-        {
-            perror("socket:");
-            return -1;
-        }
 
         if (connect(cfd, (struct sockaddr *)&serv, sizeof(serv)) < 0)
         {
             perror("connect:");
             return -1;
         }
-
-        char buffer[1024] = {0};
 
         while (1)
         {
