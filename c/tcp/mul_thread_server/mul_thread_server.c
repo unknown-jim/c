@@ -9,7 +9,7 @@
 #include <arpa/inet.h>
 #include <ctype.h>
 #include <pthread.h>
-#include "../wrap.h"
+#include "../../wrap.h"
 
 void *thread_worker(void *arg)
 {

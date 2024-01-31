@@ -8,7 +8,7 @@
 #include <sys/epoll.h>
 #include <ctype.h>
 #include <time.h>
-#include "../wrap.h"
+#include "../../wrap.h"
 
 #define MAX_EVENTS 1024          // 通信文件描述符最大监听数量
 const static int BUFSIZE = 1024; // 每个连接缓存区大小
